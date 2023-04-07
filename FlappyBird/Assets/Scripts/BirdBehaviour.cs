@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BirdBehaviour : MonoBehaviour
@@ -37,7 +35,7 @@ public class BirdBehaviour : MonoBehaviour
             {
                 _animator.SetTrigger("Fly");
                 // 施加瞬时力量
-                _body.AddForce(_force * 5, ForceMode2D.Impulse);
+                _body.AddForce(_force * 4, ForceMode2D.Impulse);
                 WingAudio.Play();
             }
         }
@@ -54,15 +52,12 @@ public class BirdBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Finish"))
+        HitAudio.Play();
+        if (_isAlive)
         {
-            HitAudio.Play();
-            if (_isAlive)
-            {
-                DieAudio.Play();
-                _isAlive = false;
-                GameController.Instance.GameOver();
-            }
+            DieAudio.Play();
+            _isAlive = false;
+            GameController.Instance.GameOver();
         }
     }
 }

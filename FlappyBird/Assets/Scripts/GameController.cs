@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 // 1. 按下空格，游戏开始
 // 2. 小鸟碰到柱子，游戏结束
@@ -60,13 +56,13 @@ public class GameController : MonoBehaviour
         {
             SceneManager.LoadScene("GameScene");
             _state = GameState.READY;
-            Score = 0;
         }
     }
 
     public void StartGame()
     {
         _state = GameState.PLAY;
+        Score = 0;
         PlayAudio.Play();
     }
 
